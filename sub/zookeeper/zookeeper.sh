@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
-if [ -z "$ZOOKEEPER_ID" -o -z "$CLUSTER" ] ; then
-  echo "required environment: ZOOKEEPER_ID CLUSTER; skipping zookeeper"
+if [ -z "$CLUSTER" ] ; then
+  echo "required environment: CLUSTER; skipping zookeeper"
   exit 0
 fi
 
