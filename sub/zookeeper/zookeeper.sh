@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 if [ -z "$CLUSTER" ] ; then
   echo "required environment: CLUSTER; skipping zookeeper"
