@@ -11,4 +11,6 @@ export KAFKA_BROKER=`echo $CLUSTER | xargs -n 1 | cat -n | grep $HOST | awk '{pr
 
 ../../render.py < server.properties > /opt/kafka/config/server.properties
 
+cp kafka.conf /etc/supervisor/conf.d
+
 chown -RH ubuntu:ubuntu /{opt,data}/kafka

@@ -9,6 +9,8 @@ zfs create data/zookeeper
 
 ../../render.py < zoo.cfg > /opt/zookeeper/conf/zoo.cfg
 
+cp zookeeper.conf /etc/supervisor/conf.d
+
 echo $CLUSTER | xargs -n 1 | cat -n | grep $HOST | awk '{print $1}' > /data/zookeeper/myid
 
 chown -RH ubuntu:ubuntu /{opt,data}/zookeeper
