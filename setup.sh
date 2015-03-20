@@ -5,7 +5,7 @@ export DEBIAN_FRONTEND=noninteractive
 export HOST=`hostname` HOSTNAME=`hostname`
 
 top=$PWD
-for sub in ddns misc slack zookeeper kafka ; do
+for sub in ddns misc slack zookeeper kafka barrier ; do
     echo -- $sub --
     cd $top/sub/$sub
     ./$sub.sh
