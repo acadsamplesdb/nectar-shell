@@ -24,3 +24,7 @@ chmod a+w /dev/console
 # (no points for elegance)
 
 echo "service supervisor start" >> /etc/rc.local
+
+# reporting api
+
+echo "iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443" >> /etc/rc.local
