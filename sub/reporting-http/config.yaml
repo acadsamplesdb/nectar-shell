@@ -1,0 +1,22 @@
+zkConnectionString: {{ CLUSTER }}
+
+authCache: maximumSize=1000, expireAfterAccess=20s, expireAfterWrite=20s
+
+hexAuthKey: {{ REPORTING_AUTH_KEY }}
+
+authType: dynamodb
+dynamodb:
+    region: {{ REPORTING_DYNAMODB_REGION }}
+    table: {{ REPORTING_DYNAMODB_PREFIX }}
+    access: {{ REPORTING_DYNAMODB_ACCESS }}
+    secret: {{ REPORTING_DYNAMODB_SECRET }}
+
+server:
+    applicationConnectors:
+        - type: https
+          port: 8443
+          keyStorePath: keystore.jks
+          keyStorePassword: {{ REPORTING_KEYSTORE_PASSWORD }}
+          validateCerts: false
+          supportedProtocols: ["SSLv2Hello","TLSv1","TLSv1.1","TLSv1.2"]
+          excludedCipherSuites: [".*RC4.*",".*DES.*"]
