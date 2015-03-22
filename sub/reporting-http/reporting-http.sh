@@ -8,9 +8,10 @@ fi
 fs=data/http
 
 zfs create $fs
-chown ubuntu:ubuntu /$fs
 
 wget -O - $REPORTING_URL | openssl $REPORTING_CIPHER -d -pass pass:$REPORTING_PASSWORD | tar xvf - -C /$fs
+
+chown -RH ubuntu:ubuntu /$fs
 
 ../../render.py < config.yaml > /$fs/config.yaml
 
