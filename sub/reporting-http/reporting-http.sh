@@ -16,3 +16,5 @@ chown -RH ubuntu:ubuntu /$fs
 ../../render.py < config.yaml > /$fs/config.yaml
 
 cp http.conf /etc/supervisor/conf.d
+
+echo "iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443" >> /etc/rc.local
