@@ -1,13 +1,11 @@
 #!/bin/sh
 
-version=master
+curl --silent --location https://github.com/eResearchSA/nectar-shell/archive/$REF.tar.gz | tar xzvf -
 
-curl --silent --location https://github.com/eResearchSA/nectar-shell/archive/$version.tar.gz | tar xzvf -
-
-cd nectar-shell-$version
+cd nectar-shell-$REF
 
 ./setup.sh
 
-# should not reach this point
+# should not reach this point (setup will reboot)
 
 /sbin/poweroff
