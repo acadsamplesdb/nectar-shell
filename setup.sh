@@ -4,8 +4,12 @@ export DEBIAN_FRONTEND=noninteractive
 
 export HOST=`hostname` HOSTNAME=`hostname`
 
+if [ -z "$SUB" ] ; then
+    SUB="ddns misc slack"
+fi
+
 top=$PWD
-for sub in ddns misc slack ; do
+for sub in $SUB ; do
     echo -- $sub --
     cd $top/sub/$sub
     ./$sub.sh
