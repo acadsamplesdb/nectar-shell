@@ -5,7 +5,7 @@ if [ -z "$CLUSTER" ] ; then
   exit 0
 fi
 
-zfs create data/kafka
+zfs create -o compression=gzip-9 data/kafka
 
 export KAFKA_BROKER=`echo $CLUSTER | xargs -n 1 | cat -n | grep $HOST | awk '{print $1}'`
 
