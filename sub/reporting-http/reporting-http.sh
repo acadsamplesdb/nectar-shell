@@ -17,4 +17,7 @@ chown -RH ubuntu:ubuntu /$fs
 
 cp http.conf /etc/supervisor/conf.d
 
-echo "iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443" >> /etc/rc.local
+cat << EOF >> /etc/rc.local
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 3772 -j REDIRECT --to-port 8443
+EOF
