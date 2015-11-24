@@ -2,19 +2,18 @@
 
 # Sits around waiting until the local resolver picks up all names in sys.argv.
 
-import os
 import socket
 import sys
 import time
 
-def ok(names, max_wait = 5 * 60):
+def ok(names, max_wait=300):
     start = time.time()
 
     while time.time() <= (start + max_wait):
         try:
             return [socket.gethostbyname(name) for name in names]
         except:
-            print "at least one name does not exist yet; waiting..."
+            print("at least one name does not exist yet; waiting...")
             time.sleep(20)
 
     return None

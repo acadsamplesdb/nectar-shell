@@ -15,10 +15,7 @@ chmod 755 $ddns
 
 $ddns
 
-for init in ddns ; do
-    install $init.init /etc/init.d/$init
-    update-rc.d $init defaults
-done
+echo "/etc/cron.hourly/ddns" >> /etc/rc.local
 
 # wait until the DNS catches up ...
 

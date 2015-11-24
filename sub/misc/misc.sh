@@ -7,15 +7,11 @@ dpkg-reconfigure -f noninteractive tzdata
 
 # init
 
-for init in iosched ; do
-    install $init.init /etc/init.d/$init
-    update-rc.d $init defaults
-done
+cat >> /etc/rc.local << EOF
+echo noop > /sys/block/vda/queue/scheduler
+echo noop > /sys/block/vdb/queue/scheduler
+EOF
 
 # ntp
 
 install -o 0 -g 0 ntp.conf /etc
-
-# open the console for output
-
-chmod a+w /dev/console
