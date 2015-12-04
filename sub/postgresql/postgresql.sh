@@ -11,7 +11,7 @@ su -l postgres -c 'createuser --superuser ubuntu'
 
 # zfs
 
-service postgresql stop
+systemctl stop postgresql
 
 fs=data/postgresql
 zfs create $fs
@@ -26,5 +26,6 @@ cp -f pg_hba.conf /etc/postgresql/9.4/main
 
 # done
 
-sysv-rc-conf postgresql off
-service postgresql start
+systemctl disable postgresql
+systemctl start postgresql
+
