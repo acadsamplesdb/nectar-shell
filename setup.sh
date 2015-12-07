@@ -5,7 +5,7 @@ export DEBIAN_FRONTEND=noninteractive
 export HOST=`hostname` HOSTNAME=`hostname`
 
 if [ -z "$SUB" ] ; then
-    SUB="ddns misc slack"
+    SUB="ddns slack"
 fi
 
 top=$PWD
