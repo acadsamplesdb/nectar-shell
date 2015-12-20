@@ -6,12 +6,20 @@ set -e -x
 
 systemctl start postgresql
 
+# nginx
+
+cp -f nginx.conf ca.pem samples.pem /etc/nginx
+
+(umask 077 ; echo $HTTPS_KEY | base64 --decode > /etc/nginx/samples.key)
+
+systemctl enable nginx
+
 # prep
 
-fs=data/samples
-
-zfs create $fs
-chown ubuntu:ubuntu /$fs
+for fs in tmp samples; do
+    zfs create data/$fs
+    chown ubuntu:ubuntu /data/$fs
+done
 
 pip3 install virtualenv
 
@@ -21,7 +29,7 @@ su -l ubuntu << EOF
 
 createdb samples
 
-cd /$fs
+cd /data/samples
 wget -qO - https://github.com/acadsamplesdb/acad_samples/archive/master.tar.gz | tar xzvf - --strip-components=1
 
 virtualenv venv
